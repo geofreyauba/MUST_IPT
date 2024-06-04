@@ -1,0 +1,22 @@
+*{
+    background-color: black;
+    color: aliceblue;
+}
+
+h1{
+    border-radius: 20px;
+    color: rgb(144, 69, 214);
+}
+
+div{
+    width: 500px;
+    height: 500px;
+    background-color: brown;
+    background-image: url("./images/coste2.jpg");
+    background-size: cover;
+    border-radius: 10px;
+}
+
+p{
+    color: aliceblue;
+}
