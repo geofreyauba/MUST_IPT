@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mgodi App</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <div class="form-container">
+            <h1>Welcome to the Mgodi App</h1>
+            <form id="predictionForm" action="/predict" method="post">
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" required>
+
+                <label for="precipitation">Precipitation:</label>
+                <input type="text" id="precipitation" name="precipitation" required>
+
+                <label for="temp_max">Temp Max:</label>
+                <input type="text" id="temp_max" name="temp_max" required>
+
+                <label for="temp_min">Temp Min:</label>
+                <input type="text" id="temp_min" name="temp_min" required>
+
+                <label for="wind">Wind:</label>
+                <input type="text" id="wind" name="wind" required>
+
+                <button type="submit" value="Predict">Predict</button>
+            </form>
+        </div>
+
+        <div class="result-container">
+            <h2>Prediction Result</h2>
+            <div id="result">
+                <script>
+                    document.getElementById('predictionForm').onsubmit = function(event) {
+                        event.preventDefault();
+            
+                        // Log form data
+                        const date = document.getElementById('date').value;
+                        const precipitation = document.getElementById('precipitation').value;
+                        const tempMax = document.getElementById('temp_max').value;
+                        const tempMin = document.getElementById('temp_min').value;
+                        const wind = document.getElementById('wind').value;
+            
+                        console.log("Date:", date);
+                        console.log("Precipitation:", precipitation);
+                        console.log("Temp Max:", tempMax);
+                        console.log("Temp Min:", tempMin);
+                        console.log("Wind:", wind);
+            
+                        // Display the captured data in the result div
+                        document.getElementById('result').innerHTML = `
+                            <p><strong>Date:</strong> ${date}</p>
+                            <p><strong>Precipitation:</strong> ${precipitation}</p>
+                            <p><strong>Temp Max:</strong> ${tempMax}</p>
+                            <p><strong>Temp Min:</strong> ${tempMin}</p>
+                            <p><strong>Wind:</strong> ${wind}</p>
+                            <p><strong>Prediction:</strong></p>
+                        `;
+                    };
+                </script>
+                {% if prediction is not none %}
+
+                Predicted Weather: {{ prediction }}
+                <!-- The result will be displayed here after submission -->
+            </div>
+        </div>
+    </div>
+    <!-- Simplified JavaScript -->
+    
+    {% endif %}
+</body>
+</html>
+
